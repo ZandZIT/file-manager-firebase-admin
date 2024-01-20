@@ -4,8 +4,8 @@ import { getAuth } from "firebase-admin/auth";
 
 export const register = async(req, res) =>{
     try{
-      const { email, password } = req.body;
-      if (!email || !password) return res.sendStatus(401);
+      const { email, password, isAdmin } = req.body;
+      if (!email || !password ) return res.sendStatus(401);
 
       const existingUser = getUserByEmail(email)
       if (existingUser) {
@@ -16,8 +16,10 @@ export const register = async(req, res) =>{
       .createUser({
         email: email,
         password: password,
+        isAdmin: isAdmin
       })
       .then((user) => {
+        getAuth().setCustomUserClaims(user.uid, { isAdmin: isAdmin });
         return res.status(200).json(user).end();
       })
       .catch((error) => {
