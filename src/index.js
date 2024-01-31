@@ -29,24 +29,20 @@ server.listen(port, () => {
 
 app.use("/", router());
 
+// import admin from "firebase-admin"
+// import { readFile } from "fs/promises";
 
-import admin from "firebase-admin"
+// const serviceAccount = JSON.parse(
+//   await readFile("serviceAccountKey.json", "utf8")
+// );
 
-// eslint-disable-next-line no-undef
-// import serviceAccount from "../serviceAccountKey.json" assert { type: "json" };
-import { readFile } from "fs/promises";
+// // console.log(serviceAccount)
 
-let serviceAccount = JSON.parse(
-  await readFile("serviceAccountKey.json", "utf8")
-);
-
-console.log(serviceAccount)
-
-export const firebaseApp = getApp.length
-  ? getApp()
-  : admin.initializeApp({
-      credentiacl: admin.credential.cert(serviceAccount),
-    });
+// export const firebaseApp = getApp.length
+//   ? getApp()
+//   : admin.initializeApp({
+//       credential: admin.credential.cert(serviceAccount),
+//     });
 
 
 
