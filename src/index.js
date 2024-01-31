@@ -31,7 +31,12 @@ app.use("/", router());
 import admin from "firebase-admin"
 
 // eslint-disable-next-line no-undef
-import serviceAccount from "../serviceAccountKey.json" assert { type: "json" };
+// import serviceAccount from "../serviceAccountKey.json" assert { type: "json" };
+import { readFile } from "fs/promises";
+
+let serviceAccount = JSON.parse(
+  await readFile("serviceAccountKey.json", "utf8")
+);
 
 export const firebaseApp = getApp.length
   ? getApp()
