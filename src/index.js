@@ -40,13 +40,12 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const serviceAccount = require("../serviceAccountKey.json");
 
-console.log(serviceAccount);
 
-// export const firebaseApp = getApp.length
-//   ? getApp()
-//   : admin.initializeApp({
-//       credential: admin.credential.cert(serviceAccount),
-//     });
+export const firebaseApp = getApp.length
+  ? getApp()
+  : admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
 
 
 
