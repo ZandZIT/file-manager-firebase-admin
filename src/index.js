@@ -21,8 +21,10 @@ app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
-server.listen(8080, () => {
-  console.log("Server running on http://localhost:8080/");
+const port = process.env.PORT
+
+server.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
 
 app.use("/", router());
@@ -38,10 +40,12 @@ let serviceAccount = JSON.parse(
   await readFile("serviceAccountKey.json", "utf8")
 );
 
+console.log(serviceAccount)
+
 export const firebaseApp = getApp.length
   ? getApp()
   : admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
+      credentiacl: admin.credential.cert(serviceAccount),
     });
 
 
