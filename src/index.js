@@ -31,12 +31,12 @@ app.use("/", router());
 
 import admin from "firebase-admin"
 
-// import { readFile } from "fs/promises";
-// const serviceAccount = JSON.parse(
-//   await readFile("serviceAccountKey.json", "utf8")
-// );
+import { readFile } from "fs/promises";
+const serviceAccount = JSON.parse(
+  await readFile(new URL("../serviceAccountKey.json", import.meta.url))
+);
 
-import serviceAccount from '../serviceAccountKey.json' assert { type: 'json' }
+// import serviceAccount from '../serviceAccountKey.json' assert { type: 'json' }
 
 // console.log(serviceAccount)
 
